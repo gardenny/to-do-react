@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+![todo-react](https://user-images.githubusercontent.com/110226567/216513282-4e00ce48-80de-467b-9615-ba82ec54d340.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🗒️ TO-DO LIST (React)
 
-## Available Scripts
+리액트 기반 다크모드 투두리스트 👉 [Demo](https://jone-to-do.netlify.app)
+<br><br>
 
-In the project directory, you can run:
+## 📢 프로젝트 소개
 
-### `yarn start`
+### [TO-DO LIST]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 다크모드를 지원하는 TO-DO LIST
+- 리스트 추가/삭제/완료/필터링 가능
+- 페이지 새로 고침 및 재접속 시에도 기존의 상태 보존
+<br><br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🗨️ 사용 기술
 
-### `yarn test`
+<div>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+  <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=flat-square&logo=PostCSS&logoColor=white"/>
+</div>
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📋 주요 기능
 
-### `yarn build`
+### 1. 리스트 추가/삭제/완료
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Add task  버튼 및 Enter키를 입력하여 리스트 추가
+- 🗑️ 버튼을 클릭하여 리스트 삭제
+- ✅ 버튼을 클릭하여 리스트 진행중/완료 상태 토글링
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. 리스트 상태 필터링
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ALL(전체 보기), ACTIVE(진행 중), COMPLETED(완료)
+- 각 버튼 클릭 시 해당하는 리스트만 필터링하여 노출
 
-### `yarn eject`
+### 3. 디자인 테마 변경
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ☀️, 🌙 버튼을 클릭하여 다크모드/라이트모드 토글링
+- html 태그에 클래스를 부여하여 적절하게 색상 변경
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. 로컬 스토리지 활용
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 로컬 스토리지에 리스트 및 테마 현재 상태 저장하기
+- 새로 고침/재방문 시 저장되어있던 상태 그대로 적용
+<br><br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 😊 나의 회고록
 
-## Learn More
+### 💧 어려웠던 점 및 개선 사항
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+기존에 자바스크립트로 투두 리스트를 구현해본 경험이 있기에 어렵지 않을 것이라 생각했지만,
+리액트는 구현하는 방식이 조금 다르다 보니 다소 혼란스러웠다.
+리액트를 배우면서 진행한 첫 번째 프로젝트였기 때문에 더욱 헷갈렸다.
+특히 자식 컴포넌트에게 콜백함수를 props로 전달하여 사용하는 부분이 아직 완벽하게 숙지되지 않았다.
+리액트의 단방향 데이터 흐름과 역방향 이벤트 흐름, 상태 끌어올리기에 대한 개념을 확실히 공부해놔야겠다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 🔥 배운 점 및 느낀 점
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+리액트에서 어떤 식으로 UI를 컴포넌트 단위로 쪼개어서 표기해 나갈 수 있는지 큰 틀을 이해할 수 있게 되었다.
+맨날 HTML로 하드 코딩만 하다가 JSX 문법을 사용해보니 신세계가 따로 없었다..
+리액트의 핵심은 결국 얼마나 효율적으로 컴포넌트의 상태들을 관리하고 데이터를 공유하여 UI에 빠르게 표현하느냐가 관건인 것 같다.
+리액트를 제대로 사용하기 위해서, 복잡한 상태 관리 및 데이터를 전역적으로 공급하는 연습을 꾸준히 해나갈 것이다. 파이팅!
