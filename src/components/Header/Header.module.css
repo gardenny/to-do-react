@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.date {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+.status {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+}
+.menu {
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+}
+.toggle {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  transition: color 300ms;
+}
+.toggle:hover {
+  color: var(--color-accent);
+}
+.filters {
+  display: flex;
+  column-gap: 2rem;
+}
+.filter {
+  color: var(--color-grey);
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 300ms;
+}
+.filter:hover,
+.filter.selected {
+  color: var(--color-text);
+}
