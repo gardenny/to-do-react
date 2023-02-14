@@ -29,4 +29,4 @@ export function DarkModeProvider({ children }) {
 }
 
 // 커스텀 훅
-export const useDarkMdoe = () => useContext(DarkModeContext);
+export const useDarkMode = () => useContext(DarkModeContext);

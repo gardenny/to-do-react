@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDarkMdoe } from '../../context/DarkModeContext';
+import { useDarkMode } from '../../context/DarkModeContext';
 import styles from './Header.module.css';
 
 const year = new Date().getFullYear();
@@ -7,7 +7,7 @@ const month = new Date().getMonth() + 1;
 const date = new Date().getDate();
 
 export default function Header({ filters, filter, onFilterChange }) {
-  const { darkMode, toggleDarkMode } = useDarkMdoe();
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <header className={styles.header}>
