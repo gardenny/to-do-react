@@ -2,63 +2,140 @@
 
 # 🗒️ TO-DO LIST (React)
 
-리액트 기반 다크모드 투두리스트 👉 [Demo](https://jone-to-do.netlify.app)
-<br><br>
+리액트 기반 다크 모드 투두리스트 👉 [Demo](https://jone-to-do.netlify.app)
 
-## 📢 프로젝트 소개
+<br />
 
-### [TO-DO LIST]
+## 📢 프로젝트 개요
 
-- 다크모드를 지원하는 TO-DO LIST
-- 리스트 추가/삭제/완료/필터링 가능
-- 페이지 새로 고침 및 재접속 시에도 기존의 상태 보존
-<br><br>
+리액트를 공부하면서 진행한 첫 번째 프로젝트, TO-DO LIST 입니다.<br />
+리스트별 진행 상황 필터링 및 다크 모드 기능이 새롭게 추가되었습니다.
+
+<br />
 
 ## 🗨️ 사용 기술
 
-<div>
+<p>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
   <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=flat-square&logo=PostCSS&logoColor=white"/>
-</div>
-<br>
+</p>
+
+<br />
 
 ## 📋 주요 기능
 
-### 1. 리스트 추가/삭제/완료
+- 리스트 추가/삭제/완료
+- 리스트별 상태 필터링
+- 다크 모드 테마 지원
+- 로컬 스토리지 활용
 
-- Add task  버튼 및 Enter키를 입력하여 리스트 추가
-- 🗑️ 버튼을 클릭하여 리스트 삭제
-- ✅ 버튼을 클릭하여 리스트 진행중/완료 상태 토글링
+<br />
 
-### 2. 리스트 상태 필터링
+## 💻 소스 코드
 
-- ALL(전체 보기), ACTIVE(진행 중), COMPLETED(완료)
-- 각 버튼 클릭 시 해당하는 리스트만 필터링하여 노출
+전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/React-TO-DO-LIST-bd42d365689243d0b7547d115cefee7b)
 
-### 3. 디자인 테마 변경
+### 📍 리스트 추가
 
-- ☀️, 🌙 버튼을 클릭하여 다크모드/라이트모드 토글링
-- html 태그에 클래스를 부여하여 적절하게 색상 변경
+리스트를 보여주는 로직과, 리스트를 추가하는 로직을 각각 따로 분리해주었습니다.<br />
+`TodoList` - 리스트를 UI에 표기하는 최상위 컴포넌트로, 전체 리스트 배열의 상태를 관리합니다.<br />
+`AddTodo` - `props`로 받은 `onAdd` 콜백함수를 호출하여 새롭게 추가된 리스트를 인자로 전달합니다.
 
-### 4. 로컬 스토리지 활용
+```javascript
+export default function TodoList() {
+  const [todos, setTodos] = useState([]);
+  const handleAdd = todo => setTodos([...todos, todo])};
 
-- 로컬 스토리지에 리스트 및 테마 현재 상태 저장하기
-- 새로 고침/재방문 시 저장되어있던 상태 그대로 적용
-<br><br>
+  return (
+    <section>
+      <ul>{todos.map(item => (<li key={item.id}>{item.text}</li>))}</ul>
+      <AddTodo onAdd={handleAdd} />
+    </section>
+  );
+}
+```
+```javascript
+export default function AddTodo({ onAdd }) {
+  const [text, setText] = useState('');
+  const handleChange = e => setText(e.target.value);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (text.trim().length === 0) return;
+    onAdd({ id: uuidv4(), text, status: 'active' });
+    setText(''); // 입력값 초기화
+  };
 
-## 😊 나의 회고록
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="add Todo" value={text} onChange={handleChange} />
+      <button type="submit">Add</button>
+    </form>
+  );
+}
+```
 
-### 💧 어려웠던 점 및 개선 사항
+### 📍 필터링 적용
 
-기존에 자바스크립트로 투두 리스트를 구현해본 경험이 있기에 어렵지 않을 것이라 생각했지만,
-리액트는 구현하는 방식이 조금 다르다 보니 다소 혼란스러웠다.
-리액트를 배우면서 진행한 첫 번째 프로젝트였기 때문에 더욱 헷갈렸다.
-특히 자식 컴포넌트에게 콜백함수를 props로 전달하여 사용하는 부분이 아직 완벽하게 숙지되지 않았다.
-리액트의 단방향 데이터 흐름과 역방향 이벤트 흐름, 상태 끌어올리기에 대한 개념을 확실히 공부해놔야겠다.
+필터링 목록을 배열로 정의해두고, `useState`를 통해 현재 필터값의 상태를 관리합니다.<br />
+자식 컴포넌트에게 필터링에 필요한 정보들을 각각 `props`로 전달하여 적절하게 상태를 업데이트합니다.
 
-### 🔥 배운 점 및 느낀 점
+```javascript
+const filters = ['all', 'active', 'completed'];
+export default function App() {
+  const [filter, setFilter] = useState(filters[0]);
 
-리액트에서 어떤 식으로 UI를 컴포넌트 단위로 쪼개어서 표기해 나갈 수 있는지 큰 틀을 이해할 수 있게 되었다.
-맨날 HTML로 하드 코딩만 하다가 JSX 문법을 사용해보니 신세계가 따로 없었다..
-리액트의 핵심은 결국 얼마나 효율적으로 컴포넌트의 상태들을 관리하고 데이터를 공유하여 UI에 빠르게 표현하느냐가 관건인 것 같다.
-리액트를 제대로 사용하기 위해서, 복잡한 상태 관리 및 데이터를 전역적으로 공급하는 연습을 꾸준히 해나갈 것이다. 파이팅!
+  return (
+    <div>
+      <Header filters={filters} filter={filter} onFilterChange={setFilter} />
+      <TodoList filter={filter} />
+    </div>
+  );
+}
+```
+
+### 📍 다크 모드 구현
+
+다크모드는 전역적인 데이터의 성격을 띄고 있기 때문에 Context를 통해 관리합니다.<br />
+현재 모드 상태와 모드를 토글링할 수 있는 함수를 만든 후 Provider의 `value`로 전달해주고,<br />
+컴포넌트가 처음 mount 될 때 로컬 스토리지에 저장된 현재 테마 설정이 그대로 적용되게끔 구현하였습니다.
+
+```javascript
+const DarkModeContext = createContext();
+function updateDarkMode(darkMode) {
+  if (darkMode) {
+    document.documentElement.classList.add('dark');
+    localStorage.theme = 'dark';
+  } else {
+    document.documentElement.classList.remove('dark');
+    localStorage.theme = 'light';
+  }
+}
+
+export function DarkModeProvider({ children }) {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    updateDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    const isDarkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setDarkMode(isDarkMode);
+    updateDarkMode(isDarkMode);
+  }, []);
+
+  return <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>{children}</DarkModeContext.Provider>;
+}
+
+// 커스텀 훅
+export const useDarkMode = () => useContext(DarkModeContext);
+```
+
+<br />
+
+## 😊 배운 점 및 느낀 점
+
+- 리액트 어플리케이션의 전반적인 흐름을 이해할 수 있었습니다.
+- 컴포넌트의 상태를 어떤 식으로 업데이트하여 UI에 반영할 수 있는지 원리에 대해 알게 되었습니다.
+- 리액트의 단방향 데이터 흐름과 역방향 이벤트 흐름, 상태 끌어올리기에 대한 개념을 더 공부해야겠다고 느꼈습니다.
