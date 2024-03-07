@@ -33,7 +33,7 @@
 
 ## 💻 소스 코드
 
-전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/React-TO-DO-LIST-bd42d365689243d0b7547d115cefee7b)
+전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/React-TO-DO-LIST-bd42d365689243d0b7547d115cefee7b?pvs=4)
 
 ### 📍 리스트 추가
 
